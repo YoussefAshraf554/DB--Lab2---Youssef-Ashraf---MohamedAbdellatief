@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>To-Do</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="todo-page">
+<div class="todo-app">
+    <div class="topbar">
+        <h1>To-Do</h1>
+        <div class="who">
+            <span>Hi, {{ name }}</span>
+            <form method="POST" action="{{ url_for('logout') }}">
+                <button type="submit" class="ghost">Log out</button>
+            </form>
+        </div>
+    </div>
+
+    <form id="addForm" class="add-row" novalidate>
+        <input id="newTitle" type="text" placeholder="Add a new task " autocomplete="off" aria-label="New task">
+        <button type="submit">Add</button>
+    </form>
+
+    <div id="msg" class="alert" role="alert" hidden></div>
+    {% if load_error %}<div class="alert" role="alert">Could not load your tasks. Please refresh.</div>{% endif %}
+
+    <div class="tabs">
+        <button type="button" class="tab active" data-filter="all"></button>
+        <button type="button" class="tab" data-filter="active"></button>
+        <button type="button" class="tab" data-filter="completed"></button>
+    </div>
+
+    <ul id="list"></ul>
+    <p id="empty" class="empty" hidden></p>
+</div>
+
+<script>
+    
+    var tasks = {{ tasks|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/todos.js') }}"></script>
+
+</body>
+</html>
