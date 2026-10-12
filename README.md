@@ -26,7 +26,6 @@ project-folder/
 ├── .env.example
 ├── .gitignore
 ├── README.md
-├── requirements.txt
 ├── static/
 │   ├── css/style.css
 │   └── js/
